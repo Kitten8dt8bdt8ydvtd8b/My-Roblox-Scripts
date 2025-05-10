@@ -18,7 +18,7 @@ game:GetService("RunService").Heartbeat:Connect(function()
 		
 		hrp.Velocity = Vector3.new(hrp.Velocity.X, 20, hrp.Velocity.Z)
 		
-		if game.Players.LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Climbing then script.Parent.Humanoid:ChangeState(Enum.HumanoidStateType.Climbing) end
+		if game.Players.LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Climbing then game.Players.LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Climbing) end
 		if not anim.IsPlaying then anim:Play() end
 		
 	else
