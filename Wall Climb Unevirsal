@@ -1,0 +1,28 @@
+local wall = nil
+
+local hrp = script.Parent:WaitForChild("HumanoidRootPart")
+
+local anim = script.Parent:WaitForChild("Humanoid"):LoadAnimation(script.Parent:WaitForChild("Animate").climb.ClimbAnim)
+
+
+game:GetService("RunService").Heartbeat:Connect(function()
+	
+	local raycastParams = RaycastParams.new()
+	raycastParams.FilterDescendantsInstances = {script.Parent}
+	
+	local raycastResult = workspace:Raycast(script.Parent.LeftFoot.Position, hrp.CFrame.LookVector * 1.3, raycastParams)
+	
+	wall = raycastResult and raycastResult.Instance or nil
+	
+	if wall then
+		
+		hrp.Velocity = Vector3.new(hrp.Velocity.X, 20, hrp.Velocity.Z)
+		
+		if script.Parent.Humanoid:GetState() ~= Enum.HumanoidStateType.Climbing then script.Parent.Humanoid:ChangeState(Enum.HumanoidStateType.Climbing) end
+		if not anim.IsPlaying then anim:Play() end
+		
+	else
+		
+		anim:Stop()
+	end
+end)
