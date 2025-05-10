@@ -1,8 +1,8 @@
 local wall = nil
 
-local hrp = script.Parent:WaitForChild("HumanoidRootPart")
+local hrp = game.Players.LocalPlayer.Character:WaitForChild("HumanoidRootPart")
 
-local anim = script.Parent:WaitForChild("Humanoid"):LoadAnimation(script.Parent:WaitForChild("Animate").climb.ClimbAnim)
+local anim = game.Players.LocalPlayer.Character:WaitForChild("Humanoid"):LoadAnimation(script.Parent:WaitForChild("Animate").climb.ClimbAnim)
 
 
 game:GetService("RunService").Heartbeat:Connect(function()
@@ -18,7 +18,7 @@ game:GetService("RunService").Heartbeat:Connect(function()
 		
 		hrp.Velocity = Vector3.new(hrp.Velocity.X, 20, hrp.Velocity.Z)
 		
-		if script.Parent.Humanoid:GetState() ~= Enum.HumanoidStateType.Climbing then script.Parent.Humanoid:ChangeState(Enum.HumanoidStateType.Climbing) end
+		if game.Players.LocalPlayer.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Climbing then script.Parent.Humanoid:ChangeState(Enum.HumanoidStateType.Climbing) end
 		if not anim.IsPlaying then anim:Play() end
 		
 	else
